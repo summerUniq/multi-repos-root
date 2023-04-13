@@ -6,3 +6,7 @@
     path = src/21-vue-bankend-system
     url = ssh://git@github.com:summerUniq/vue-bankend-system.git
     branch = master
+[submodule "doc/chapters/11-daily-mark"]
+    path = doc/chapters/11-daily-mark
+    url = ssh://git@github.com:summerUniq/daily-job-mark.git
+    branch = master
