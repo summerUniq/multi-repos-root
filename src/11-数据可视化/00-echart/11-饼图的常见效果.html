@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var pieData = [
+        {
+          name: '淘宝',
+          value: 11231,
+        },
+        {
+          name: '京东',
+          value: 22673,
+        },
+        {
+          name: '唯品会',
+          value: 6123,
+        },
+        {
+          name: '1号店',
+          value: 8989,
+        },
+        {
+          name: '聚美优品',
+          value: 6700,
+        },
+      ];
+      const option = {
+        series: [
+          {
+            type: 'pie',
+            data: pieData,
+            label: {
+              show: true,
+              formatter: function (args) {
+                const { name, value, percent } = args;
+                return `${name}平台${value}元\n${percent}%`;
+                console.log(args);
+              },
+            },
+            // redius: 10,
+            // radius: '20%',
+            radius: ['50%', '75%'],
+            roseType: 'radius', // 南丁格尔图 饼图的每一个区域的半径是不同的
+            selectedMode: 'single', // multiple
+            selectedOffset: 30,
+          },
+        ],
+      };
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            height: 300px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child1">child1</div>
+        <div class="child2">child2</div>
+    </div>
+    <script>
+       const parent = document.querySelector('.parent')
+       const child2 = document.querySelector('.child2')
+       parent.addEventListener('click', function (event) {
+        console.log('parent click', event.target, event.currentTarget, event.relatedTarget);
+       })
+
+       child2.addEventListener('click', function (event) {
+        console.log('child2 click', event.target, event.currentTarget, event.relatedTarget);
+       })
+
+       child2.addEventListener('mouseenter', function (event) {
+        console.log('parent mouseEnter', event.target, event.currentTarget, event.relatedTarget);
+        
+       })
+
+       // event.target 指向实际被点击的元素
+       // event.currentTarget 指向绑定事件的元素
+       // event.relatedTarget 指向从那个时候元素移入child2
+       
+    </script>
+</body>
+</html>

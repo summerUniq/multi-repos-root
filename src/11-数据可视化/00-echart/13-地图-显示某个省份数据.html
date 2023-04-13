@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="lib/echarts.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px; border: 1px solid #f00"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      $.get('json/map/anhui.json', function (ret) {
+        console.log(ret);
+        echarts.registerMap('anhui', ret);
+        var option = {
+          geo: {
+            type: 'map',
+            map: 'anhui',
+            zoom: 1.2,
+            label: {
+              show: true,
+            },
+            center: [116.507676, 31.752889], // 这个坐标值, 我们是可以通过地图矢量数据获取到的
+          },
+        };
+        mCharts.setOption(option);
+      });
+    </script>
+  </body>
+</html>

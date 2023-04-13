@@ -1,0 +1,8 @@
+[submodule "src/20-three-demo"]
+    path = src/20-three-demo
+    url = ssh://git@github.com:summerUniq/three-demo.git
+    branch = master
+[submodule "src/21-vue-bankend-system"]
+    path = src/21-vue-bankend-system
+    url = ssh://git@github.com:summerUniq/vue-bankend-system.git
+    branch = master

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <p class="refreshText"></p >
+        <ul id="refreshContainer">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+            <li>444</li>
+            <li>555</li>
+            ...
+        </ul>
+    </main>
+    <script>
+        const _element = document.getElementById('refreshContainer')
+        const _refreshElement = document.querySelector('.refreshText')
+        let _startPos = 0
+        let _transitionHeight = 0
+        _element.addEventListener('touchstart', function (e) {
+            _startPos = e.touches[0].pageY
+            _element.style.position = 'relative'
+            _element.style.transition = 'transform 0s'
+        }, false)
+
+        _element.addEventListener('touchmove', function (e) {
+            _transitionHeight = e.touches[0].pageY - _startPos
+            if(_transitionHeight > 0 && _transitionHeight <= 60) {
+                _refreshElement.innerHTML = '下拉刷新'
+                _element.style.transform =  `translateY(${_transitionHeight}px)`
+                if(_transitionHeight > 55) {
+                    _refreshElement.innerHTML = '释放更新'
+                }
+            }
+        }, false)
+
+        _element.addEventListener('touchend', function (e) {
+            _element.style.transition = 'transform 0.5s ease 1s';
+            _element.style.transform = 'translateY(0px)'
+            _refreshElement.innerHTML = '更新中...';
+            // TODO...
+            console.log('refresh callback')
+        }, false)
+    </script>
+</body>
+</html>

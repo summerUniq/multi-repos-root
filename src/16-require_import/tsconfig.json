@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    // Enable typescript to import with relative path
+    "baseUrl": "src",
+    "outDir": "out",
+    "removeComments": false,
+    "sourceMap": false,
+    // Avoid TS7016 error
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types",
+    ],
+  },
+  "exclude": [
+    "node_modules",
+  ],
+  "include": [
+    "src/**/*",
+  ]
+}

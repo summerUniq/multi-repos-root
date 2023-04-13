@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>直角坐标系的常用配置dataZoom</title>
+    <script src="lib/echarts.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      var mCharts = echarts.init(document.querySelector('div'));
+      var xDataArr = [
+        '张三',
+        '李四',
+        '王五',
+        '闰土',
+        '小明',
+        '茅台',
+        '二妞',
+        '大强',
+      ];
+      var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86];
+      const option = {
+        dataZoom: [
+          {
+            // type: 'inside',
+            type: 'slider',
+            xAxisIndex: 0,
+          },
+          {
+            type: 'slider',
+            yAxisIndex: 0,
+            start: 0,
+            end: 80,
+          },
+        ],
+        grid: {
+          show: true,
+          borderColor: 'red',
+        },
+        xAxis: {
+          type: 'category',
+          data: xDataArr,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            name: '语文',
+            type: 'bar',
+            markPoint: {
+              data: [
+                {
+                  type: 'max',
+                  name: '最大值',
+                },
+                {
+                  type: 'min',
+                  name: '最小值',
+                },
+              ],
+            },
+            markLine: {
+              data: [
+                {
+                  type: 'average',
+                  name: '平均值',
+                },
+              ],
+            },
+            label: {
+              show: true,
+              position: 'top',
+            },
+            barWidth: '30%',
+            data: yDataArr,
+          },
+        ],
+      };
+      mCharts.setOption(option);
+    </script>
+  </body>
+</html>

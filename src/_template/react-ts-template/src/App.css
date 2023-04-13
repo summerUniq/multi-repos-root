@@ -1,0 +1,22 @@
+.app {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.nav {
+    border-right: solid 1px;
+    padding-right: 1rem;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #4c4c4c;
+    display: flex;
+    align-items: center;
+}

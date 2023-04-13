@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="lib/echarts.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 600px; height: 400px"></div>
+    <script>
+      const mCharts = echarts.init(document.querySelector('div'));
+      mCharts.showLoading();
+      $.get('data/test_data.json', function (ret) {
+        console.log('ret', ret);
+        mCharts.hideLoading();
+        const axisData = [];
+        for (var i = 0; i < ret.length; i++) {
+          const height = ret[i].height;
+          const weight = ret[i].weight;
+          const itemArr = [height, weight];
+          axisData.push(itemArr);
+        }
+        const option = {
+          xAxis: {
+            type: 'value',
+            scale: true,
+          },
+          yAxis: {
+            type: 'value',
+            scale: true,
+          },
+          series: [
+            {
+              type: 'effectScatter',
+              data: axisData,
+              showEffectOn: 'emphasis',
+              symbolSize: function (arg) {
+                console.log('arg', arg);
+                const weight = arg[1];
+                const height = arg[0] / 100;
+                const bmi = weight / (height * height);
+                if (bmi > 28) {
+                  return 20;
+                }
+                return 5;
+              },
+              itemStyle: {
+                color: function (arg) {
+                  console.log(arg);
+                  const [height, weight] = arg.data;
+                  const bmi = weight / (((height / 100) * height) / 100);
+                  if (bmi > 28) {
+                    return 'red';
+                  }
+                  return 'green';
+                },
+              },
+              rippleEffect: {
+                scale: 10,
+              },
+            },
+          ],
+        };
+        mCharts.setOption(option);
+      });
+    </script>
+  </body>
+</html>
